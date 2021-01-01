@@ -7,21 +7,45 @@ As their data engineer, you are tasked with building an ETL pipeline that extrac
 ## Project Description
 In this project, I applied what I've learned on data warehouses and AWS to build an ETL pipeline for a database hosted on Redshift. To complete the project, I needed to load data from S3 to staging tables on Redshift and execute SQL statements that create the analytics tables from these staging tables.
 
-## Project files:
-- `create_table.py`: create fact and dimension tables for the star schema in Redshift.
-- `etl.py`: load data from `S3` into staging tables on `Redshift` and then process that data into analytics tables on `Redshift`.
-- `sql_queries.py`: define SQL statements, which will be imported into the two other files above.
+## Project Datasets
+Here are the S3 links for each datasets:
+- Song data: s3://udacity-dend/song_data
+- Log data: s3://udacity-dend/log_data
 
 ## Database Schema Design
 ![schema](schema.png)
 
-Star schema which is optimized for queries on song play analysis. This includes the following tables.
+### Staging Tables
+- staging_events - raw Log Dataset format
+- staging_songs - raw Song Dataset format
 
-### Fact Table
+
+### Star Schema
+I createa a star schema optimized for queries on song play analysis. This includes the following tables.
+#### Fact Table
 - songplays - records in event data associated with song plays i.e. records with page NextSong
-### Dimension Tables
+#### Dimension Tables
 - users - users in the app
 - songs - songs in music database
 - artists - artists in music database
 - time - timestamps of records in songplays broken down into specific units
 
+## Data Warehouse Configurations and Setup
+- Created a new `IAM user` in your AWS account
+- Give it AdministratorAccess and Attach policies
+- Create an `IAM Role` that makes `Redshift` able to access `S3 bucket` (ReadOnly)
+- Create a `RedShift Cluster` and get the `DWH_ENDPOIN(Host address)` and `DWH_ROLE_ARN` and fill the config file.
+
+## ETL Pipeline
+1.  Loading the data from `S3 buckets` to staging tables in the `Redshift Cluster`.
+2.  Inserted data into fact and dimension tables from the staging tables.
+
+## Project files:
+- `create_table.py`: create fact and dimension tables for the star schema in Redshift.
+- `etl.py`: load data from `S3` into staging tables on `Redshift` and then process that data into analytics tables on `Redshift`.
+- `sql_queries.py`: define SQL statements, which will be imported into the two other files above.
+- `dhw.cfg` - Configuration file that contains info about `Redshift`, `IAM` and `S3`
+
+## How to Run
+1. Create tables by running `create_tables.py`.
+2. Execute ETL process by running `etl.py`.
