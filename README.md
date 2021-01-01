@@ -16,19 +16,19 @@ Here are the S3 links for each datasets:
 ![schema](schema.png)
 
 ### Staging Tables
-- staging_events - raw Log Dataset format
-- staging_songs - raw Song Dataset format
+- **staging_events** - raw Log Dataset format
+- **staging_songs** - raw Song Dataset format
 
 
 ### Star Schema
 I createa a star schema optimized for queries on song play analysis. This includes the following tables.
 #### Fact Table
-- songplays - records in event data associated with song plays i.e. records with page NextSong
+- **songplays** - records in event data associated with song plays i.e. records with page NextSong
 #### Dimension Tables
-- users - users in the app
-- songs - songs in music database
-- artists - artists in music database
-- time - timestamps of records in songplays broken down into specific units
+- **users** - users in the app
+- **songs** - songs in music database
+- **artists** - artists in music database
+- **time** - timestamps of records in songplays broken down into specific units
 
 ## Data Warehouse Configurations and Setup
 - Created a new `IAM user` in your AWS account
@@ -41,9 +41,9 @@ I createa a star schema optimized for queries on song play analysis. This includ
 2.  Inserted data into fact and dimension tables from the staging tables.
 
 ## Project files:
-- `create_table.py`: create fact and dimension tables for the star schema in Redshift.
-- `etl.py`: load data from `S3` into staging tables on `Redshift` and then process that data into analytics tables on `Redshift`.
-- `sql_queries.py`: define SQL statements, which will be imported into the two other files above.
+- `create_table.py` -  create fact and dimension tables for the star schema in Redshift.
+- `etl.py` - load data from `S3` into staging tables on `Redshift` and then process that data into analytics tables on `Redshift`.
+- `sql_queries.py` - define SQL statements, which will be imported into the two other files above.
 - `dhw.cfg` - Configuration file that contains info about `Redshift`, `IAM` and `S3`
 
 ## How to Run
