@@ -59,7 +59,7 @@ CREATE TABLE staging_songs(
 songplay_table_create = ("""
 CREATE TABLE IF NOT EXISTS songplays(
 songplay_id int IDENTITY(0,1), 
-start_time int8, 
+start_time timestamp, 
 user_id int8, 
 level varchar, 
 song_id varchar, 
@@ -119,6 +119,7 @@ staging_events_copy = ("""
 copy staging_events 
 from {} 
 iam_role {} 
+REGION 'us-west-2'
 json {};
 """).format(config.get('S3','LOG_DATA'), config.get('IAM_ROLE', 'ARN'), config.get('S3','LOG_JSONPATH'))
 
@@ -126,6 +127,7 @@ staging_songs_copy = ("""
 copy staging_songs 
 from {} 
 iam_role {}
+REGION 'us-west-2'
 json 'auto';
 """).format(config.get('S3','SONG_DATA'), config.get('IAM_ROLE', 'ARN'))
 # FINAL TABLES
