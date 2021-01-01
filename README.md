@@ -9,5 +9,18 @@ In this project, I applied what I've learned on data warehouses and AWS to build
 
 ## Project files:
 - `create_table.py`: create fact and dimension tables for the star schema in Redshift.
-- `etl.py`: load data from S3 into staging tables on Redshift and then process that data into analytics tables on Redshift.
+- `etl.py`: load data from `S3` into staging tables on `Redshift` and then process that data into analytics tables on `Redshift`.
 - `sql_queries.py`: define SQL statements, which will be imported into the two other files above.
+
+## Database Schema Design
+![schema](schema.png)
+Star schema which is optimized for queries on song play analysis. This includes the following tables.
+
+### Fact Table
+- songplays - records in event data associated with song plays i.e. records with page NextSong
+### Dimension Tables
+- users - users in the app
+- songs - songs in music database
+- artists - artists in music database
+- time - timestamps of records in songplays broken down into specific units
+
