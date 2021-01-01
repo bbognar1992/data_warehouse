@@ -14,6 +14,7 @@ In this project, I applied what I've learned on data warehouses and AWS to build
 
 ## Database Schema Design
 ![schema](schema.png)
+
 Star schema which is optimized for queries on song play analysis. This includes the following tables.
 
 ### Fact Table
